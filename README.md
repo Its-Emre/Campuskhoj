@@ -41,4 +41,4 @@ npm run dev            # http://localhost:5173
 ```
 
 ## 📌 Status
-Week 1 in progress — project skeleton + auth API ready; frontend pages next.
+Week 1 in progress — auth is ready end to end (API + login/register pages + items feed). Item posting flow comes next.
