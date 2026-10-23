@@ -23,6 +23,12 @@ export default function Navbar() {
           </Link>
           {user ? (
             <>
+              <Link
+                to="/post"
+                className="rounded bg-blue-600 px-3 py-1.5 text-white hover:bg-blue-700"
+              >
+                Post Item
+              </Link>
               <span className="text-gray-600">Hi, {user.name}</span>
               <button
                 onClick={handleLogout}

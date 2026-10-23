@@ -40,11 +40,11 @@ export const getItemById = async (req, res) => {
   }
 };
 
-// POST /api/items — protected
+// POST /api/items — protected. Accepts multipart form data with an
+// optional single "image" file (see middleware/upload.js).
 export const createItem = async (req, res) => {
   try {
-    const { title, description, type, category, location, date, imageUrl } =
-      req.body;
+    const { title, description, type, category, location, date } = req.body;
 
     if (!title || !description || !type || !location || !date) {
       return res.status(400).json({
@@ -59,7 +59,7 @@ export const createItem = async (req, res) => {
       category,
       location,
       date,
-      imageUrl,
+      imageUrl: req.file ? `/uploads/${req.file.filename}` : "",
       postedBy: req.user._id,
     });
 

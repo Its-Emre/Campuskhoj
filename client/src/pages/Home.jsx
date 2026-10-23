@@ -1,32 +1,45 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { api } from "../lib/api";
 
 function ItemCard({ item }) {
   const isLost = item.type === "lost";
   return (
-    <div className="rounded-lg border bg-white p-4 shadow-sm">
-      <div className="flex items-center justify-between">
-        <span
-          className={`rounded px-2 py-0.5 text-xs font-semibold ${
-            isLost
-              ? "bg-red-100 text-red-700"
-              : "bg-green-100 text-green-700"
-          }`}
-        >
-          {isLost ? "LOST" : "FOUND"}
-        </span>
-        <span className="text-xs text-gray-500">
-          {new Date(item.date).toLocaleDateString()}
-        </span>
+    <Link
+      to={`/items/${item._id}`}
+      className="overflow-hidden rounded-lg border bg-white shadow-sm transition hover:shadow-md"
+    >
+      {item.imageUrl && (
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className="h-40 w-full object-cover"
+        />
+      )}
+      <div className="p-4">
+        <div className="flex items-center justify-between">
+          <span
+            className={`rounded px-2 py-0.5 text-xs font-semibold ${
+              isLost
+                ? "bg-red-100 text-red-700"
+                : "bg-green-100 text-green-700"
+            }`}
+          >
+            {isLost ? "LOST" : "FOUND"}
+          </span>
+          <span className="text-xs text-gray-500">
+            {new Date(item.date).toLocaleDateString()}
+          </span>
+        </div>
+        <h3 className="mt-2 font-semibold">{item.title}</h3>
+        <p className="mt-1 line-clamp-2 text-sm text-gray-600">
+          {item.description}
+        </p>
+        <p className="mt-2 text-xs text-gray-500">
+          📍 {item.location} • {item.category} • Status: {item.status}
+        </p>
       </div>
-      <h3 className="mt-2 font-semibold">{item.title}</h3>
-      <p className="mt-1 line-clamp-2 text-sm text-gray-600">
-        {item.description}
-      </p>
-      <p className="mt-2 text-xs text-gray-500">
-        📍 {item.location} • {item.category} • Status: {item.status}
-      </p>
-    </div>
+    </Link>
   );
 }
 

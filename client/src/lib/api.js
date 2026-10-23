@@ -26,6 +26,24 @@ async function request(path, options = {}) {
   return data;
 }
 
+// Variant for multipart uploads: the browser sets the Content-Type header
+// (with the boundary) itself, so we must not override it.
+async function requestForm(path, formData) {
+  const token = getToken();
+
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "POST",
+    body: formData,
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.message || "Something went wrong");
+  }
+  return data;
+}
+
 export const api = {
   register: (payload) =>
     request("/auth/register", {
@@ -39,4 +57,12 @@ export const api = {
     const qs = new URLSearchParams(params).toString();
     return request(`/items${qs ? `?${qs}` : ""}`);
   },
+  getItem: (id) => request(`/items/${id}`),
+  createItem: (formData) => requestForm("/items", formData),
+  updateItemStatus: (id, status) =>
+    request(`/items/${id}/status`, {
+      method: "PATCH",
+      body: JSON.stringify({ status }),
+    }),
+  deleteItem: (id) => request(`/items/${id}`, { method: "DELETE" }),
 };

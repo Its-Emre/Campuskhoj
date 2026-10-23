@@ -41,4 +41,4 @@ npm run dev            # http://localhost:5173
 ```
 
 ## 📌 Status
-Week 1 in progress — auth is ready end to end (API + login/register pages + items feed). Item posting flow comes next.
+Week 2 done — item posting with photo upload, item detail pages, and owner status/delete actions are live (API + UI). Next: claim flow, personal dashboard, UI polish.
