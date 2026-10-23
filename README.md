@@ -41,4 +41,4 @@ npm run dev            # http://localhost:5173
 ```
 
 ## 📌 Status
-Week 2 done — item posting with photo upload, item detail pages, and owner status/delete actions are live (API + UI). Next: claim flow, personal dashboard, UI polish.
+Week 3 done — the claim flow is live: anyone logged in can request to claim an open item with proof, the poster reviews requests and accepts one (accepting marks the item claimed and declines the rest), plus a My Posts dashboard with tabs for your posts (status/delete + pending-claim counts) and your claims. Next: UI polish and deploy (Vercel + Render + Atlas).

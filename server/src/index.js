@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import itemRoutes from "./routes/itemRoutes.js";
+import meRoutes from "./routes/meRoutes.js";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.get("/api/health", (req, res) => {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
+app.use("/api/me", meRoutes);
 
 // 404 fallback
 app.use((req, res) => {

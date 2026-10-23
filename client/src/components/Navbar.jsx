@@ -29,6 +29,9 @@ export default function Navbar() {
               >
                 Post Item
               </Link>
+              <Link to="/myposts" className="hover:underline">
+                My Posts
+              </Link>
               <span className="text-gray-600">Hi, {user.name}</span>
               <button
                 onClick={handleLogout}

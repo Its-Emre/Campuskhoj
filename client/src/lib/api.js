@@ -65,4 +65,21 @@ export const api = {
       body: JSON.stringify({ status }),
     }),
   deleteItem: (id) => request(`/items/${id}`, { method: "DELETE" }),
+  // Week 3: claim flow + personal dashboard
+  createClaim: (itemId, message) =>
+    request(`/items/${itemId}/claims`, {
+      method: "POST",
+      body: JSON.stringify({ message }),
+    }),
+  getItemClaims: (itemId) => request(`/items/${itemId}/claims`),
+  respondClaim: (itemId, claimId, decision) =>
+    request(`/items/${itemId}/claims/${claimId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ decision }),
+    }),
+  getMyItems: () => request("/me/items"),
+  getMyClaims: (params = {}) => {
+    const qs = new URLSearchParams(params).toString();
+    return request(`/me/claims${qs ? `?${qs}` : ""}`);
+  },
 };
