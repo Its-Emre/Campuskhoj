@@ -4,8 +4,10 @@ A full-stack web app where students can post **lost** and **found** items on cam
 
 ## 🔗 Live demo
 
-- **App:** _deployment in progress — link will be added here_
-- **API health check:** _deployment in progress_
+- **App:** https://campuskhoj.vercel.app
+- **API health check:** https://campuskhoj-xfhv.onrender.com/api/health
+
+> Note: the backend runs on Render's free tier and sleeps after ~15 minutes of inactivity — the first request after a break can take 30–50 seconds to wake it up.
 
 ## ✨ Features
 
@@ -93,4 +95,4 @@ For the production frontend, set `VITE_API_URL` to the deployed backend's `/api`
 
 ## 📌 Status
 
-Weeks 1–3 complete and verified end-to-end: auth, posting with photos, search/filter, the full claim flow and the personal dashboard. Week 4 (deployment) in progress.
+Complete and deployed (October 2026). All four build weeks are done and verified live: auth, posting with photos, search & filters, the full claim flow, the personal dashboard, Cloudinary image storage, and production deployment (Vercel + Render + MongoDB Atlas).
