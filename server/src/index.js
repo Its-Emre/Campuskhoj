@@ -21,7 +21,8 @@ app.use(
 );
 app.use(express.json());
 
-// Uploaded item photos (stored on disk by multer).
+// Locally stored item photos — the development fallback. In production,
+// photos are served from Cloudinary URLs instead (config/cloudinary.js).
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
 // Health check

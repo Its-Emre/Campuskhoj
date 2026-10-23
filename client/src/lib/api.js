@@ -1,7 +1,9 @@
 // Small fetch wrapper for the CampusKhoj API.
-// In development, Vite proxies "/api" to the Express server (see vite.config.js).
+// In development, Vite proxies "/api" to the Express server (see
+// vite.config.js). In production, VITE_API_URL points at the deployed
+// backend's /api URL (set in the hosting dashboard, e.g. Vercel).
 
-const API_BASE = "/api";
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
 
 function getToken() {
   return localStorage.getItem("campuskhoj_token");

@@ -1,4 +1,5 @@
 import Item from "../models/Item.js";
+import { storeItemImage } from "../config/cloudinary.js";
 
 // GET /api/items — public. Supports ?search=&type=&category=&location=
 export const getItems = async (req, res) => {
@@ -52,6 +53,13 @@ export const createItem = async (req, res) => {
       });
     }
 
+    // Photo (optional): stored on Cloudinary, or on local disk when
+    // Cloudinary is not configured (see config/cloudinary.js).
+    let imageUrl = "";
+    if (req.file) {
+      imageUrl = await storeItemImage(req.file);
+    }
+
     const item = await Item.create({
       title,
       description,
@@ -59,7 +67,7 @@ export const createItem = async (req, res) => {
       category,
       location,
       date,
-      imageUrl: req.file ? `/uploads/${req.file.filename}` : "",
+      imageUrl,
       postedBy: req.user._id,
     });
 
